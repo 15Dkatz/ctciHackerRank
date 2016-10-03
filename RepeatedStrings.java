@@ -1,7 +1,6 @@
 package ctciHackerrank;
 
 import java.math.BigDecimal;
-import java.util.Scanner;
 
 //Sample Input 1
 //
@@ -46,10 +45,15 @@ public class RepeatedStrings {
 	}
 
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		String s = in.next();
-		long n = in.nextLong();
-
-		System.out.println(aNum(s, n));
+		// Scanner in = new Scanner(System.in);
+		// String s = in.next();
+		// long n = in.nextLong();
+		//
+		// System.out.println(aNum(s, n));
+		String testString = "hello|there";
+		String[] testSplit = testString.split("[|]");
+		for (int t = 0; t < testSplit.length; t++) {
+			System.out.println("test splitted : " + testSplit[t]);
+		}
 	}
 }
