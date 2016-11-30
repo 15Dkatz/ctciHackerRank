@@ -42,5 +42,6 @@ public class BalancedStacks {
 			else
 				System.out.println("NO");
 		}
+		in.close();
 	}
 }

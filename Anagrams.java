@@ -3,69 +3,40 @@ package ctciHackerrank;
 import java.util.HashMap;
 import java.util.Scanner;
 
-//Sample Input
-//
-//cde
-//abc
-//Sample Output
-//
-//4
-
 public class Anagrams {
+	// converts a string to a map of character counts
+	public static HashMap<Character, Integer> stringMap(String string) {
+		HashMap<Character, Integer> stringMap = new HashMap<Character, Integer>();
+		for (int i = 0; i < string.length(); i++) {
+			Character nextChar = string.charAt(i);
+			if (!stringMap.containsKey(nextChar)) {
+				stringMap.put(nextChar, 1);
+			} else {
+				stringMap.put(nextChar, stringMap.get(nextChar) + 1);
+			}
+		}
+		return stringMap;
+	}
+
 	public static int numberNeeded(String first, String second) {
-		// char and count
-		HashMap<Character, Integer> firstPairs = new HashMap<Character, Integer>();
-
-		for (int i = 0; i < first.length(); i++) {
-			Character nextChar = first.charAt(i);
-			// System.out.println("next char" + nextChar);
-			if (firstPairs.containsKey(nextChar) == false) {
-				firstPairs.put(nextChar, 1);
-			} else {
-				firstPairs.put(nextChar, firstPairs.get(nextChar) + 1);
-			}
-		}
-
-		HashMap<Character, Integer> secondPairs = new HashMap<Character, Integer>();
-
-		for (int i = 0; i < second.length(); i++) {
-			Character nextChar = second.charAt(i);
-			if (secondPairs.containsKey(nextChar) == false) {
-				secondPairs.put(nextChar, 1);
-			} else {
-				secondPairs.put(nextChar, secondPairs.get(nextChar) + 1);
-			}
-		}
-
 		int deletions = 0;
-		// do some counting
-		for (Character key : firstPairs.keySet()) {
-			// System.out.println("key get " + firstPairs.get(key));
-			// for each key in firstPairs
-			// check if the key is in second pairs
-			if (secondPairs.containsKey(key)) {
-				// System.out.println("contains key" + key);
-				int difference = firstPairs.get(key) - secondPairs.get(key);
+		HashMap<Character, Integer> stringMap1 = stringMap(first);
+		HashMap<Character, Integer> stringMap2 = stringMap(second);
 
-				// System.out.println("a" + firstPairs.get(key) + "b" +
-				// secondPairs.get(key));
-				if (difference < 0) {
-					difference *= -1;
-				}
+		for (Character nextChar : stringMap1.keySet()) {
+			if (stringMap2.containsKey(nextChar)) {
+				int difference = stringMap1.get(nextChar) - stringMap2.get(nextChar);
+				difference = difference > 0 ? difference : difference * -1;
 				deletions += difference;
-				// System.out.println("difference " + difference);
-				secondPairs.remove(key);
+				stringMap2.remove(nextChar);
 			} else {
-				deletions += firstPairs.get(key);
+				deletions += stringMap1.get(nextChar);
 			}
 		}
 
-		// go through the second pairs and add to deletions
-		for (Character key : secondPairs.keySet()) {
-			deletions += secondPairs.get(key);
-			// System.out.println("second key" + key);
+		for (Character nextChar : stringMap2.keySet()) {
+			deletions += stringMap2.get(nextChar);
 		}
-
 		return deletions;
 	}
 

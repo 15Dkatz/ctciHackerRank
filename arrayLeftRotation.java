@@ -66,8 +66,6 @@ public class arrayLeftRotation {
 			int newPosition = i - rotations;
 			if (newPosition < 0) {
 				newPosition += array.length;
-			} else {
-				newPosition = newPosition;
 			}
 			newArr[newPosition] = array[i];
 		}
@@ -84,5 +82,6 @@ public class arrayLeftRotation {
 		}
 		a = quickRotate(a, k);
 		print(a);
+		in.close();
 	}
 }

@@ -36,5 +36,6 @@ public class LonelyInteger {
 			a[a_i] = in.nextInt();
 		}
 		System.out.println(findUnique(a));
+		in.close();
 	}
 }

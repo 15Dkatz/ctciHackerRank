@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Queues {
 
+	@SuppressWarnings("hiding")
 	public static class MyQueue<Integer> {
 		private ArrayList<Integer> order;
 
